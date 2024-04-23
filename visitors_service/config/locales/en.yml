@@ -33,3 +33,4 @@ en:
   hello: "Hello world"
   only_letters: 'Should contains only letters'
   uncorrect_format: 'Uncorrect document format'
+  uncorrect_params: 'Uncorrect params'
