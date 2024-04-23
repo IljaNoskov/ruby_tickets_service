@@ -34,3 +34,4 @@ en:
   only_letters: 'Should contains only letters'
   uncorrect_format: 'Uncorrect document format'
   uncorrect_params: 'Uncorrect params'
+  not_found: 'Visitor not found'
