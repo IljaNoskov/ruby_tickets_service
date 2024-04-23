@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_23_160913) do
+ActiveRecord::Schema.define(version: 2024_04_23_164107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2024_04_23_160913) do
   create_table "visitors", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "middle_name", null: false
+    t.string "middle_name"
     t.string "document_type", null: false
     t.string "document_number", null: false
     t.date "birthdate", null: false
