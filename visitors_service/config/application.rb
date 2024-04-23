@@ -10,6 +10,7 @@ module VisitorsService
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.autoload_paths += Dir[File.join(Rails.root, 'app', 'models', '**', 'validators')]
 
     # Configuration for the application, engines, and railties goes here.
     #
