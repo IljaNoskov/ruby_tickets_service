@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  age_restricted: "Age restriction %{age}+"
+  second_ticket: 'Only one ticket per person'
+  booking_expired: 'Booking expired'
+  booking_not_found: 'Booking not found'
