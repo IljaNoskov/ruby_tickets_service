@@ -1,0 +1,2 @@
+class VisitorRegistrationException < Exception
+end

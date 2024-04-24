@@ -1,0 +1,2 @@
+class InvalidBookingException < Exception
+end

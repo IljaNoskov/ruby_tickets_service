@@ -1,0 +1,2 @@
+class NotMeetRequirementsException < Exception
+end
