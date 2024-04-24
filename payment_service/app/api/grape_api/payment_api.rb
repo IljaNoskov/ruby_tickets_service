@@ -25,7 +25,7 @@ class GrapeApi
         ValidatePaymentRequestService.call(booking, visitor)
         payment = CreatePaymentTransactionService.call(booking, visitor)
 
-        present payment
+        present payment, with: GrapeApi::Entities::Payment
       end
     end
 

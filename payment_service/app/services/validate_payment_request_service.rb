@@ -6,7 +6,7 @@ class ValidatePaymentRequestService
 private
 
   def self.check_visitor_age(visitor)
-    lowest_date = visitor.birthdate.advance(years: Settings.required_age)
+    lowest_date = visitor.birthdate.to_date.advance(years: Settings.required_age)
     result = Date.current >= lowest_date
 
     raise NotMeetRequirementsException, I18n.t(:age_restricted, age: Settings.required_age) unless result
