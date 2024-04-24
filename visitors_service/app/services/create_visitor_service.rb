@@ -5,8 +5,8 @@ class CreateVisitorService
     existing_visitor = Visitor.find_by(document_type: new_visitor.document_type, document_number: new_visitor.document_number)
     visitor = existing_visitor || new_visitor
 
-    visitor.save unless visitor.persisted?
+    visitor.save! unless visitor.persisted?
 
-    return VisitorCreationResult.new visitor
+    return visitor
   end
 end

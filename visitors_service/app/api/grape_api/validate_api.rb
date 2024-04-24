@@ -1,5 +1,5 @@
 class GrapeApi
-  class Validate < Grape::API
+  class ValidateApi < Grape::API
 
     rescue_from ActiveRecord::RecordNotFound do |e|
       error!({ message: I18n.t(:not_found) }, 404)
