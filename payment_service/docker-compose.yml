@@ -9,6 +9,9 @@ services:
       - 3000:3000
     environment:
       REDIS_URL: redis://redis:6379/0
+      FETCH_BOOKING_URL: http://booking-service:3001/booking
+      CREATE_VISITOR_URL: http://visitors-service:3002/visitors
+      REQUIRED_AGE: 13
     depends_on:
       - db
 
