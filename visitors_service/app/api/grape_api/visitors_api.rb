@@ -8,9 +8,7 @@ class GrapeApi
         mount ValidateApi
       end
 
-      namespace do
-        mount CreateVisitorApi
-      end
+      mount CreateVisitorApi
 
     end
   end

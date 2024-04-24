@@ -7,3 +7,4 @@ class ValidateVisitorAgeService
 
     VisitorValidationResult.new(result, visitor)
   end
+end

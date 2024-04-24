@@ -19,6 +19,7 @@ class GrapeApi
     end
     post do
       visitor = CreateVisitorService.call params[:visitor]
+      status 201
       present visitor, with: GrapeApi::Entities::Visitor
     end
 

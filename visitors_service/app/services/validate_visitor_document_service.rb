@@ -4,7 +4,7 @@ class ValidateVisitorDocumentService
     type = document_type || DetermineDocumentTypeService.call(number)
 
     visitor = Visitor.find(id)
-    result = (visitor.document_type == document_type && visitor.document_number == document_number)
+    result = (visitor.document_type == type && visitor.document_number == number)
 
     VisitorValidationResult.new(result, visitor)
   end
