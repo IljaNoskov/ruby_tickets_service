@@ -76,9 +76,27 @@ describe GrapeApi::CreatePaymentApi do
       end
     end
 
-    context 'booking service is unavailable'
-    context 'visitors service is unavailable'
+    context 'booking service is unavailable' do
+      before do
+        stub_request(:any, Regexp.new(Settings.fetch_booking_url)).to_timeout
+      end
+
+      subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
+      it_behaves_like 'payment creation failure', :service_unavailable do
+        let(:error_message) { I18n.t(:booking_service_unavailable) }
+      end
+    end
+
+    context 'visitors service is unavailable' do
+      before do
+        stub_request(:any, Settings.create_visitor_url).to_timeout
+      end
+
+      subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
+      it_behaves_like 'payment creation failure', :service_unavailable do
+        let(:error_message) { I18n.t(:visitors_service_unavailable) }
+      end
+    end
 
   end
-
 end
