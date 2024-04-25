@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePaymentTransactionService
   def self.call(booking, visitor)
     Payment.create!(

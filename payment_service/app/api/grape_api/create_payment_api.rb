@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrapeApi
   class CreatePaymentApi < Grape::API
     rescue_from InvalidBookingException, NotMeetRequirementsException do |e|

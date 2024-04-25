@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StartPaymentTransactionService
   def self.call(booking, visitor)
     ValidatePaymentRequestService.call(booking, visitor)

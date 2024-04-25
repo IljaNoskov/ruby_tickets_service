@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VisitorRegistrationException < RuntimeError
   attr_reader :response
 

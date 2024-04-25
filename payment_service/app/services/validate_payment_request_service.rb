@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ValidatePaymentRequestService
   def self.call(booking, visitor)
     check_visitor_age(visitor)

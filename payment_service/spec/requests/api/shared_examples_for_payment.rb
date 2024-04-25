@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'request failure' do |code|
   it 'returns expected status code' do
     expect(subject).to have_http_status(code)

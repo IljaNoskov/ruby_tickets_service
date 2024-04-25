@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FetchBookingService
   def self.call(booking_number)
     client = HTTPClient.new

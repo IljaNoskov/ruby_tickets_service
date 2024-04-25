@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateBookingStatusService
   def self.buy(booking_number)
     client = HTTPClient.new
