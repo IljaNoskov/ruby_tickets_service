@@ -2,15 +2,15 @@ version: '3'
 services:
   tickets: 
     build: tickets
-    command: sh -c "rm -f /usr/src/tickets/tickets/tmp/pids/server.pid && cd tickets && rails server -b 0.0.0.0"
+    command: sh -c "rm -f /usr/src/tmp/pids/server.pid && cd tickets && rails server -b 0.0.0.0"
     volumes:
-      - .:/usr/src/tickets/
+      - .:/usr/src/tickets
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - tickets_db
   
-  db:
+  tickets_db:
     image: postgres:11.5
     environment:
       POSTGRES_USER: user
