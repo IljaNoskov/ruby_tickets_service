@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrapeApi
   class CreateVisitorApi < Grape::API
     rescue_from ActiveRecord::RecordInvalid do |e|

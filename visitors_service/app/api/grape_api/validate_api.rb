@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrapeApi
   class ValidateApi < Grape::API
     rescue_from ActiveRecord::RecordNotFound do |_e|

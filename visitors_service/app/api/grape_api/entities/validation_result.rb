@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GrapeApi
   module Entities
     class ValidationResult < Grape::Entity

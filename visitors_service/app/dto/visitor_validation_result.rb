@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VisitorValidationResult
   attr_reader :result, :visitor
 

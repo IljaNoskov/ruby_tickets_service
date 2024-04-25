@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VisitorsHelper
   def response_from(visitor)
     {

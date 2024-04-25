@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateVisitorService
   def self.call(params)
     new_visitor = Visitor.new(params) and new_visitor.pretify

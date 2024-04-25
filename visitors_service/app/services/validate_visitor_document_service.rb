@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ValidateVisitorDocumentService
   def self.call(id, document_type, document_number)
     number = PretifyDocumentNumberService.call(document_number)
