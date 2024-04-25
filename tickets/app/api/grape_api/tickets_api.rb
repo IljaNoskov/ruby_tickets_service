@@ -39,9 +39,9 @@ class GrapeApi
                 end
 
                 put do
-                    if action == 'create'
+                    if params[:action] == 'create'
                         response = UpdateTicketService.create_booking(params[:event_id], params[:type])
-                    elsif action = 'delete'
+                    elsif params[:action] = 'delete'
                         response = UpdateTicketService.delete_booking(params[:ticket_id])
                     else
                         response = UpdateTicketService.buy_ticket(params[:ticket_id], params[:user_id])
@@ -68,7 +68,7 @@ class GrapeApi
             namespace :block do
                 params do
                     requires :ticket_id, type: Integer
-                    requires :block, type: Bool
+                    requires :block, type: Boolean
                 end
 
                 get do
