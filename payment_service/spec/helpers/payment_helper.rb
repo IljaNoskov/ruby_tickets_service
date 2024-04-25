@@ -45,6 +45,7 @@ module PaymentHelper
       'booking_number' => payment.booking_number,
       'event_id' => payment.event_id,
       'visitor_id' => payment.visitor_id,
+      'ticket_id' => payment.ticket_id,
       'price' => payment.price,
       'status' => payment.status
     }

@@ -7,5 +7,6 @@ FactoryBot.define do
     status { 'finished' }
     booking_number { '123' }
     event_id { 1 }
+    ticket_id { 1 }
   end
 end
