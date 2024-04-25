@@ -5,5 +5,4 @@ class VisitorValidationResult
     @result = result
     @visitor = visitor
   end
-
 end

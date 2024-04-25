@@ -7,9 +7,8 @@ class DocumentNumberValidator < ActiveModel::Validator
 
   def validate(record)
     format = DOCUMENTS_FORMATS[record.document_type.to_sym]
-    unless format && format.match?(record.document_number)
-      record.errors.add :document_number, I18n.t(:uncorrect_format)
-    end
-  end
+    return if format && format.match?(record.document_number)
 
+    record.errors.add :document_number, I18n.t(:uncorrect_format)
+  end
 end

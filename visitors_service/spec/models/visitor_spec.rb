@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Visitor, type: :model do
-
-  subject {
+  subject do
     described_class.new(
       first_name: 'Евгений',
       last_name: 'Черкасов',
@@ -11,10 +10,9 @@ RSpec.describe Visitor, type: :model do
       document_type: 'passport',
       document_number: '1234123456'
     )
-  }
+  end
 
   context 'valid' do
-
     it 'with valid attributes' do
       subject.run_callbacks(:save)
 
@@ -61,5 +59,4 @@ RSpec.describe Visitor, type: :model do
       expect(subject).to_not be_valid
     end
   end
-
 end

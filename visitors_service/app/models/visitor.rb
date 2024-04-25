@@ -1,7 +1,9 @@
 class Visitor < ApplicationRecord
   enum document_type: %w[passport license certificate].index_by(&:to_sym)
   validates :first_name, :last_name, format: { with: /\A[а-яА-Я]+\z/, message: I18n.t(:only_letters) }
-  validates :middle_name, format: {with: /\A[а-яА-Я]+\z/, message: I18n.t(:only_letters) }, if: Proc.new { |v| v.middle_name }
+  validates :middle_name, format: { with: /\A[а-яА-Я]+\z/, message: I18n.t(:only_letters) }, if: proc { |v|
+                                                                                                   v.middle_name
+                                                                                                 }
   validates_with DocumentNumberValidator
 
   before_save :pretify
@@ -11,7 +13,8 @@ class Visitor < ApplicationRecord
     process_document_number
   end
 
-private
+  private
+
   def process_names
     [first_name, last_name, middle_name].each { |name| name&.strip! }
   end

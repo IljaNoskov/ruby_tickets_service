@@ -9,7 +9,6 @@ describe GrapeApi::ValidateApi do
   after(:all) { Visitor.destroy_all }
   let(:visitor) { Visitor.last }
 
-
   describe 'GET /document' do
     let(:url) { '/api/visitors/validate/document' }
     let(:params) { { id: visitor.id, document_type: visitor.document_type, document_number: visitor.document_number } }
@@ -37,7 +36,7 @@ describe GrapeApi::ValidateApi do
     end
 
     context 'validation failed' do
-      let(:params) { { id: visitor.id, document_type: visitor.document_type, document_number: "9999-123456" } }
+      let(:params) { { id: visitor.id, document_type: visitor.document_type, document_number: '9999-123456' } }
 
       subject do
         get url, params: params
@@ -90,5 +89,4 @@ describe GrapeApi::ValidateApi do
       end
     end
   end
-
 end

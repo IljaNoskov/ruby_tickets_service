@@ -49,6 +49,5 @@ describe GrapeApi::CreateVisitorApi do
         expect(response).to have_http_status(:not_acceptable)
       end
     end
-
   end
 end

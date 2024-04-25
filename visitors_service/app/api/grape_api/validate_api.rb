@@ -1,12 +1,11 @@
 class GrapeApi
   class ValidateApi < Grape::API
-
-    rescue_from ActiveRecord::RecordNotFound do |e|
+    rescue_from ActiveRecord::RecordNotFound do |_e|
       error!({ message: I18n.t(:not_found) }, 404)
     end
 
     desc 'Проверка принадлежности документа пользователю',
-    success: GrapeApi::Entities::ValidationResult, failure: [{ code: 404 }]
+         success: GrapeApi::Entities::ValidationResult, failure: [{ code: 404 }]
     params do
       requires :id, type: Integer
       requires :document_number, type: String
@@ -18,7 +17,7 @@ class GrapeApi
     end
 
     desc 'Проверка факта достижения посетителем требуемого возраста',
-    success: GrapeApi::Entities::ValidationResult, failure: [{ code: 404 }]
+         success: GrapeApi::Entities::ValidationResult, failure: [{ code: 404 }]
     params do
       requires :id, type: Integer
       requires :age, type: Integer
@@ -27,6 +26,5 @@ class GrapeApi
       result = ValidateVisitorAgeService.call(params[:id], params[:age])
       present result, with: GrapeApi::Entities::ValidationResult
     end
-
   end
 end
