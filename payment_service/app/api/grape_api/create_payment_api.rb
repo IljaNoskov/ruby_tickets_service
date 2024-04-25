@@ -29,11 +29,10 @@ class GrapeApi
       end
     end
     post do
-      booking = FetchBookingService.call(params[:booking_number])
       visitor = RegisterVisitorService.call(params[:visitor])
+      booking = FetchBookingService.call(params[:booking_number])
 
-      ValidatePaymentRequestService.call(booking, visitor)
-      payment = CreatePaymentTransactionService.call(booking, visitor)
+      payment = StartPaymentTransactionService.call(booking, visitor)
 
       present payment, with: GrapeApi::Entities::Payment
     end
