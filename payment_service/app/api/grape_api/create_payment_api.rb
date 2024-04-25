@@ -13,6 +13,10 @@ class GrapeApi
       error!({ message: I18n.t(:uncorrect_params), errors: e.record.errors }, 406)
     end
 
+    rescue_from ServiceUnavailableException do |e|
+      error!({ message: e.message }, 503)
+    end
+
     params do
       requires :booking_number, type: String
       requires :visitor, type: Hash do

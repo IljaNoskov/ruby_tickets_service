@@ -1,0 +1,2 @@
+class ServiceUnavailableException < Exception
+end

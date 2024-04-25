@@ -36,3 +36,5 @@ en:
   booking_expired: 'Booking expired'
   booking_not_found: 'Booking not found'
   uncorrect_params: 'Wrong visitor params'
+  visitors_service_unavailable: 'Visitors service unavailable'
+  booking_service_unavailable: 'Booking service unavailable'
