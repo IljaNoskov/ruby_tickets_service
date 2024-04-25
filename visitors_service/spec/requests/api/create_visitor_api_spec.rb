@@ -42,9 +42,11 @@ describe GrapeApi::CreateVisitorApi do
     end
 
     context 'invalid params' do
-      it 'returns a 400 status code' do
-        post url, params: { visitor: { }}
-        expect(response).to have_http_status(:bad_request)
+      let(:visitor) { build(:visitor, document_number: '132-111') }
+
+      it 'returns a 406 status code' do
+        post url, params: { visitor: to_request(visitor) }
+        expect(response).to have_http_status(:not_acceptable)
       end
     end
 
