@@ -20,7 +20,7 @@ class GrapeApi
     end
 
     desc 'Создание платежной транзакции',
-    success: GrapeApi::Entities::Payment, failure: [{ code: 406, message: 'error message' }, { code: 503, message: 'error message' }]
+         success: GrapeApi::Entities::Payment, failure: [{ code: 406, message: 'error message' }, { code: 503, message: 'error message' }]
     params do
       requires :booking_number, type: String
       requires :visitor, type: Hash do

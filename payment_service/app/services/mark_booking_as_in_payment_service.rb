@@ -14,7 +14,6 @@ class MarkBookingAsInPaymentService
     raise ServiceUnavailableException, I18n.t(:booking_service_unavailable)
   end
 
-private
   def self.parse(response)
     result = JSON.parse(response.content)['body']
     Booking.new(result)

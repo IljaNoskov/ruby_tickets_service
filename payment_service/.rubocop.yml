@@ -1,0 +1,7 @@
+require: rubocop-rails
+Layout/EndOfLine:
+  Enabled: False
+Metrics/BlockLength:
+  AllowedMethods: ['describe', 'context']
+Style/DocumentationMethod:
+  Enabled: true
