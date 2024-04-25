@@ -22,7 +22,7 @@ class UpdateTicketService
     end
 
     def seld.delete_booking(ticket_id)
-        ticket = Ticket.find(ticket_id)
+        ticket = Ticket.find_by(id: ticket_id)
         unless ticket
             result = {status: 404, body: "no ticket with id = #{ticket_id}"}
 
@@ -38,7 +38,7 @@ class UpdateTicketService
     end
 
     def self.buy_ticket(ticket_id, user_id)
-        ticket = Ticket.find(ticket_id)
+        ticket = Ticket.find_by(id: ticket_id)
         unless ticket
             result = {status: 404, body: "no ticket with id = #{ticket_id}"}
 
@@ -60,7 +60,7 @@ class UpdateTicketService
     end
 
     def self.block_ticket(ticket_id, block)
-        ticket = Ticket.find(ticket_id)
+        ticket = Ticket.find_by(id: ticket_id)
         unless ticket
             result = {status: 404, body: "no ticket with id = #{ticket_id}"}
 

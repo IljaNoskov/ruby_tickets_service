@@ -1,7 +1,7 @@
 class CalculateTicketPriceService
     def self.calculate_price(event_id, ticket_type)
-        event = Event.find(event_id)
-        if even
+        event = Event.find_by(id: event_id)
+        if event
             if ticket_type = 'ordinary'
                 base_price = event.ordinary_ticket_price
                 base_count = event.ordinary_ticket_count
@@ -11,7 +11,7 @@ class CalculateTicketPriceService
                 base_count = event.vip_ticket_count
                 current_count = event.tickets.where(ticket_type: ticket_type, status: 'free').count
             else
-                return nil
+                return {status: 404, body: "we have not tickets with type #{ticket_type}"}
             end
 
             if current_count != base_count

@@ -1,6 +1,6 @@
 class GetTicketService
     def self.get_ticket(ticket_id)
-        ticket = Ticket.find(ticket_id)
+        ticket = Ticket.find_by(id: ticket_id)
         unless ticket
             result = {status: 404, body: "no ticket with id = #{ticket_id}"}
         else
