@@ -11,8 +11,10 @@ describe GrapeApi::CreatePaymentApi do
     let(:booking_number) { '123' }
 
     before do
-      stub_request(:any, Regexp.new(Settings.fetch_booking_url)).to_return(body: valid_booking.to_json)
-      stub_request(:any, Settings.create_visitor_url).to_return(body: visitor_from(visitor_params).to_json)
+      stub_request(:get, Regexp.new(Settings.fetch_booking_url)).to_return(body: valid_booking.to_json)
+      stub_request(:post, Settings.create_visitor_url).to_return(body: visitor_from(visitor_params).to_json)
+      stub_request(:put, Settings.update_booking_status_url).to_return(body: '')
+      stub_request(:delete, Settings.buy_booking_url).to_return(body: '')
     end
 
     context 'successful creation' do
@@ -29,6 +31,14 @@ describe GrapeApi::CreatePaymentApi do
         expected = to_resonse(Payment.last)
 
         expect(result).to eq(expected)
+      end
+
+      it 'buy booking request was sent' do
+        post url, params: { booking_number: booking_number, visitor: visitor_params }
+
+        expect(
+          a_request(:delete, Settings.buy_booking_url).with(:body => { 'booking_number' => booking_number })
+        ).to have_been_made
       end
     end
 
@@ -64,6 +74,14 @@ describe GrapeApi::CreatePaymentApi do
       it_behaves_like 'request failure', :not_acceptable do
         let(:error_message) { I18n.t(:age_restricted, age: Settings.required_age) }
       end
+
+      it 'invalidate booking request was sent' do
+        post url, params: { booking_number: booking_number, visitor: visitor_params }
+
+        expect(
+          a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
+        ).to have_been_made
+      end
     end
 
     context 'visitor tries to buy a second ticket' do
@@ -73,6 +91,14 @@ describe GrapeApi::CreatePaymentApi do
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
       it_behaves_like 'request failure', :not_acceptable do
         let(:error_message) { I18n.t(:second_ticket) }
+      end
+
+      it 'invalidate booking request was sent' do
+        post url, params: { booking_number: booking_number, visitor: visitor_params }
+
+        expect(
+          a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
+        ).to have_been_made
       end
     end
 
