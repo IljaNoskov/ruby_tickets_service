@@ -1,7 +1,7 @@
 class FetchBookingService
   def self.call(booking_number)
     client = HTTPClient.new
-    response = client.get Settings.fetch_booking_url, { booking_number: booking_number }
+    response = client.put Settings.update_booking_status_url, { booking_number: booking_number }
 
     # raise ServiceUnavailableException, I18n.t(:booking_service_unavailable) if status > 500
     raise InvalidBookingException, I18n.t(:booking_expired) unless response.ok?
@@ -14,7 +14,7 @@ class FetchBookingService
 private
 
   def self.parse(response)
-    result = JSON.parse(response.content)
+    result = JSON.parse(response.content)['body']
     Booking.new(result)
   end
 end

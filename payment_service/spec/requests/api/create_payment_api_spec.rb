@@ -11,9 +11,9 @@ describe GrapeApi::CreatePaymentApi do
     let(:booking_number) { '123' }
 
     before do
-      stub_request(:get, Regexp.new(Settings.fetch_booking_url)).to_return(body: valid_booking.to_json)
+      stub_request(:put, Regexp.new(Settings.update_booking_status_url)).to_return(body: { body: valid_booking }.to_json)
       stub_request(:post, Settings.create_visitor_url).to_return(body: visitor_from(visitor_params).to_json)
-      stub_request(:put, Settings.update_booking_status_url).to_return(body: '')
+      # stub_request(:put, Settings.update_booking_status_url).to_return(body: '')
       stub_request(:delete, Settings.buy_booking_url).to_return(body: '')
     end
 
@@ -80,7 +80,7 @@ describe GrapeApi::CreatePaymentApi do
 
         expect(
           a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
-        ).to have_been_made
+        ).to have_been_made.times(2)
       end
     end
 
@@ -98,7 +98,7 @@ describe GrapeApi::CreatePaymentApi do
 
         expect(
           a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
-        ).to have_been_made
+        ).to have_been_made.times(2)
       end
     end
 
