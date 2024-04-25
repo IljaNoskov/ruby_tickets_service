@@ -6,7 +6,6 @@ describe GrapeApi::PaymentApi do
   include PaymentHelper
 
   describe 'GET /payment/{id}' do
-
     before(:all) { create(:payment) }
     after(:all) { Payment.destroy_all }
 
@@ -28,13 +27,12 @@ describe GrapeApi::PaymentApi do
     end
 
     context 'not found' do
-      let(:url) { "/api/payment/999" }
+      let(:url) { '/api/payment/999' }
 
       subject { get url and response }
       it_behaves_like 'request failure', :not_found do
         let(:error_message) { I18n.t(:not_found) }
       end
     end
-
   end
 end

@@ -1,6 +1,5 @@
 class StartPaymentTransactionService
   def self.call(booking, visitor)
-
     ValidatePaymentRequestService.call(booking, visitor)
     payment = CreatePaymentTransactionService.call(booking, visitor)
 

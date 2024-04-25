@@ -3,7 +3,6 @@ class ValidatePaymentRequestService
     check_visitor_age(visitor)
     check_existing_payments(visitor, booking)
   end
-private
 
   def self.check_visitor_age(visitor)
     lowest_date = visitor.birthdate.to_date.advance(years: Settings.required_age)

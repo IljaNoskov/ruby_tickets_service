@@ -7,8 +7,7 @@ class RegisterVisitorService
     raise VisitorRegistrationException, result unless response.ok?
 
     Visitor.new(result)
-
-  rescue HTTPClient::TimeoutError => _
+  rescue HTTPClient::TimeoutError => _e
     raise ServiceUnavailableException, I18n.t(:visitors_service_unavailable)
   end
 end

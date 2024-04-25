@@ -1,9 +1,9 @@
 module PaymentHelper
   def valid_visitor_params
     {
-      first_name: "Евгений",
-      last_name: "Черкасов",
-      middle_name: "Олегович",
+      first_name: 'Евгений',
+      last_name: 'Черкасов',
+      middle_name: 'Олегович',
       birthdate: Date.new(2000, 12, 29).to_formatted_s(:db),
       document_type: 'passport',
       document_number: '1234-123456'
@@ -12,16 +12,16 @@ module PaymentHelper
 
   def underage_visitor_params
     {
-      first_name: "Евгений",
-      last_name: "Черкасов",
-      middle_name: "Олегович",
+      first_name: 'Евгений',
+      last_name: 'Черкасов',
+      middle_name: 'Олегович',
       birthdate: Date.current.to_formatted_s(:db),
       document_type: 'passport',
       document_number: '1234-123456'
     }
   end
 
-  def visitor_from(visitor_params, id=1)
+  def visitor_from(visitor_params, _id = 1)
     params = visitor_params.except(:document_number, :document_type)
     params[:id] = 1
     params
@@ -47,5 +47,4 @@ module PaymentHelper
       'status' => payment.status
     }
   end
-
 end

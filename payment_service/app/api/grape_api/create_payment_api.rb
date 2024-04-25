@@ -1,11 +1,10 @@
 class GrapeApi
   class CreatePaymentApi < Grape::API
-
-    rescue_from InvalidBookingException, NotMeetRequirementsException  do |e|
+    rescue_from InvalidBookingException, NotMeetRequirementsException do |e|
       error!({ message: e.message }, 406)
     end
 
-    rescue_from VisitorRegistrationException  do |e|
+    rescue_from VisitorRegistrationException do |e|
       error!(e.response, 406)
     end
 
@@ -36,6 +35,5 @@ class GrapeApi
 
       present payment, with: GrapeApi::Entities::Payment
     end
-
   end
 end

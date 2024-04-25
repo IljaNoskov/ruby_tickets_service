@@ -11,7 +11,8 @@ describe GrapeApi::CreatePaymentApi do
     let(:booking_number) { '123' }
 
     before do
-      stub_request(:put, Regexp.new(Settings.update_booking_status_url)).to_return(body: { body: valid_booking }.to_json)
+      stub_request(:put,
+                   Regexp.new(Settings.update_booking_status_url)).to_return(body: { body: valid_booking }.to_json)
       stub_request(:post, Settings.create_visitor_url).to_return(body: visitor_from(visitor_params).to_json)
       # stub_request(:put, Settings.update_booking_status_url).to_return(body: '')
       stub_request(:delete, Settings.buy_booking_url).to_return(body: '')
@@ -37,7 +38,7 @@ describe GrapeApi::CreatePaymentApi do
         post url, params: { booking_number: booking_number, visitor: visitor_params }
 
         expect(
-          a_request(:delete, Settings.buy_booking_url).with(:body => { 'booking_number' => booking_number })
+          a_request(:delete, Settings.buy_booking_url).with(body: { 'booking_number' => booking_number })
         ).to have_been_made
       end
     end
@@ -79,7 +80,7 @@ describe GrapeApi::CreatePaymentApi do
         post url, params: { booking_number: booking_number, visitor: visitor_params }
 
         expect(
-          a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
+          a_request(:put, Settings.update_booking_status_url).with(body: { 'booking_number' => booking_number })
         ).to have_been_made.times(2)
       end
     end
@@ -97,7 +98,7 @@ describe GrapeApi::CreatePaymentApi do
         post url, params: { booking_number: booking_number, visitor: visitor_params }
 
         expect(
-          a_request(:put, Settings.update_booking_status_url).with(:body => { 'booking_number' => booking_number })
+          a_request(:put, Settings.update_booking_status_url).with(body: { 'booking_number' => booking_number })
         ).to have_been_made.times(2)
       end
     end
@@ -123,6 +124,5 @@ describe GrapeApi::CreatePaymentApi do
         let(:error_message) { I18n.t(:visitors_service_unavailable) }
       end
     end
-
   end
 end

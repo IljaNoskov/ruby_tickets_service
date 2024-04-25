@@ -7,11 +7,9 @@ class FetchBookingService
     raise InvalidBookingException, I18n.t(:booking_expired) unless response.ok?
 
     parse(response)
-
-  rescue HTTPClient::TimeoutError => _
+  rescue HTTPClient::TimeoutError => _e
     raise ServiceUnavailableException, I18n.t(:booking_service_unavailable)
   end
-private
 
   def self.parse(response)
     result = JSON.parse(response.content)['body']

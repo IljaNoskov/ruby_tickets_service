@@ -3,7 +3,6 @@ class GrapeApi
     format :json
 
     namespace :payment do
-
       route_param :id, type: Integer do
         get do
           payment = Payment.find_by(id: params[:id])
@@ -14,6 +13,5 @@ class GrapeApi
 
       mount CreatePaymentApi
     end
-
   end
 end
