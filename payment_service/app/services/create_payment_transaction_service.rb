@@ -2,6 +2,7 @@
 
 # Сервис создания платежной транзакции
 class CreatePaymentTransactionService
+  # метод вызова сервиса
   def self.call(booking, visitor)
     Payment.create!(
       visitor_id: visitor.id,

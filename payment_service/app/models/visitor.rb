@@ -6,6 +6,7 @@ class Visitor
 
   attr_accessor :id, :first_name, :last_name, :middle_name, :birthdate
 
+  # метод определения, хранится ли запись
   def persisted?
     false
   end

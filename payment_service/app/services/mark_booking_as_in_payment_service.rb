@@ -2,6 +2,7 @@
 
 # Сервис получения брони и маркировки ее как находящейся в оплате
 class MarkBookingAsInPaymentService
+  # метод вызова сервиса
   def self.call(booking_number)
     client = HTTPClient.new
     response = client.put Settings.update_booking_status_url, { booking_number: booking_number }

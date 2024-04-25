@@ -2,6 +2,8 @@
 
 # Сервис регистрации посетителя
 class RegisterVisitorService
+
+  # метод вызова сервиса
   def self.call(visitor)
     client = HTTPClient.new
     response = client.post Settings.create_visitor_url, { visitor: visitor }

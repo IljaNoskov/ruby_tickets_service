@@ -2,6 +2,7 @@
 
 # Сервис обработки платежной транзакции
 class StartPaymentTransactionService
+  # метод вызова сервиса
   def self.call(booking, visitor)
     ValidatePaymentRequestService.call(booking, visitor)
     payment = CreatePaymentTransactionService.call(booking, visitor)
