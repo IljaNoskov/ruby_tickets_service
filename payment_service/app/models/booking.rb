@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Модель брони, получаемая от внешнего сервиса
 class Booking
   include ActiveModel::Model
 

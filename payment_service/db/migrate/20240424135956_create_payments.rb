@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Миграция для создания отношения платежной транзакции
 class CreatePayments < ActiveRecord::Migration[6.1]
   def change
     create_table :payments do |t|

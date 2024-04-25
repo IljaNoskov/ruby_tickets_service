@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Сервис обработки платежной транзакции
 class StartPaymentTransactionService
   def self.call(booking, visitor)
     ValidatePaymentRequestService.call(booking, visitor)

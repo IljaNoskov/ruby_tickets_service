@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Сервис обновления статуса брони в соответсвии с результатом транзакции
 class UpdateBookingStatusService
   def self.buy(booking_number)
     client = HTTPClient.new

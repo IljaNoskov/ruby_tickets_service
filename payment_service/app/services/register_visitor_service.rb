@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Сервис регистрации посетителя
 class RegisterVisitorService
   def self.call(visitor)
     client = HTTPClient.new

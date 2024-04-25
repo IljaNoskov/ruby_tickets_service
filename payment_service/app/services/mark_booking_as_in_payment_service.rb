@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class FetchBookingService
+# Сервис получения брони и маркировки ее как находящейся в оплате
+class MarkBookingAsInPaymentService
   def self.call(booking_number)
     client = HTTPClient.new
     response = client.put Settings.update_booking_status_url, { booking_number: booking_number }
@@ -13,6 +14,7 @@ class FetchBookingService
     raise ServiceUnavailableException, I18n.t(:booking_service_unavailable)
   end
 
+private
   def self.parse(response)
     result = JSON.parse(response.content)['body']
     Booking.new(result)

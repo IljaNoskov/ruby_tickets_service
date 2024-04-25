@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GrapeApi
+  # Определяет API для создания платежных транзакций
   class CreatePaymentApi < Grape::API
     rescue_from InvalidBookingException, NotMeetRequirementsException do |e|
       error!({ message: e.message }, 406)
@@ -18,6 +19,8 @@ class GrapeApi
       error!({ message: e.message }, 503)
     end
 
+    desc 'Создание платежной транзакции',
+    success: GrapeApi::Entities::Payment, failure: [{ code: 406, message: 'error message' }, { code: 503, message: 'error message' }]
     params do
       requires :booking_number, type: String
       requires :visitor, type: Hash do
@@ -31,7 +34,7 @@ class GrapeApi
     end
     post do
       visitor = RegisterVisitorService.call(params[:visitor])
-      booking = FetchBookingService.call(params[:booking_number])
+      booking = MarkBookingAsInPaymentService.call(params[:booking_number])
 
       payment = StartPaymentTransactionService.call(booking, visitor)
 

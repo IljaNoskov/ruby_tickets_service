@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Модель посетителя, получаемая от внешнего сервиса
 class Visitor
   include ActiveModel::Model
 

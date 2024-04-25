@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Класс, предоставляющий интерфейс для доступа к переменным среды
 class Settings
   def self.fetch_booking_url
     ENV['FETCH_BOOKING_URL']
