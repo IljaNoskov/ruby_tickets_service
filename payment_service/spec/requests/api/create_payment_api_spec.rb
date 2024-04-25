@@ -1,6 +1,6 @@
 require 'rails_helper'
 require_relative '../../helpers/payment_helper'
-require_relative 'shared_examples_for_creation'
+require_relative 'shared_examples_for_payment'
 
 describe GrapeApi::CreatePaymentApi do
   include PaymentHelper
@@ -38,7 +38,7 @@ describe GrapeApi::CreatePaymentApi do
       end
 
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
-      it_behaves_like 'payment creation failure', :not_acceptable do
+      it_behaves_like 'request failure', :not_acceptable do
         let(:error_message) { I18n.t(:booking_expired) }
       end
     end
@@ -61,7 +61,7 @@ describe GrapeApi::CreatePaymentApi do
       end
 
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
-      it_behaves_like 'payment creation failure', :not_acceptable do
+      it_behaves_like 'request failure', :not_acceptable do
         let(:error_message) { I18n.t(:age_restricted, age: Settings.required_age) }
       end
     end
@@ -71,7 +71,7 @@ describe GrapeApi::CreatePaymentApi do
       after(:all) { Payment.destroy_all }
 
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
-      it_behaves_like 'payment creation failure', :not_acceptable do
+      it_behaves_like 'request failure', :not_acceptable do
         let(:error_message) { I18n.t(:second_ticket) }
       end
     end
@@ -82,7 +82,7 @@ describe GrapeApi::CreatePaymentApi do
       end
 
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
-      it_behaves_like 'payment creation failure', :service_unavailable do
+      it_behaves_like 'request failure', :service_unavailable do
         let(:error_message) { I18n.t(:booking_service_unavailable) }
       end
     end
@@ -93,7 +93,7 @@ describe GrapeApi::CreatePaymentApi do
       end
 
       subject { post url, params: { booking_number: booking_number, visitor: visitor_params } and response }
-      it_behaves_like 'payment creation failure', :service_unavailable do
+      it_behaves_like 'request failure', :service_unavailable do
         let(:error_message) { I18n.t(:visitors_service_unavailable) }
       end
     end
