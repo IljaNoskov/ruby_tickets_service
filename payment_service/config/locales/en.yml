@@ -35,3 +35,4 @@ en:
   second_ticket: 'Only one ticket per person'
   booking_expired: 'Booking expired'
   booking_not_found: 'Booking not found'
+  uncorrect_params: 'Wrong visitor params'

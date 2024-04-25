@@ -1,32 +1,39 @@
 module PaymentHelper
   def valid_visitor_params
     {
-      'first_name' => "Евгений",
-      'last_name' => "Черкасов",
-      'middle_name' => "Олегович",
-      'birthdate' => Date.new(2000, 12, 29).to_formatted_s(:db),
-      'document_type' => 'passport',
-      'document_number' => '1234-123456'
+      first_name: "Евгений",
+      last_name: "Черкасов",
+      middle_name: "Олегович",
+      birthdate: Date.new(2000, 12, 29).to_formatted_s(:db),
+      document_type: 'passport',
+      document_number: '1234-123456'
     }
+  end
+
+  def underage_visitor_params
+    {
+      first_name: "Евгений",
+      last_name: "Черкасов",
+      middle_name: "Олегович",
+      birthdate: Date.current.to_formatted_s(:db),
+      document_type: 'passport',
+      document_number: '1234-123456'
+    }
+  end
+
+  def visitor_from(visitor_params, id=1)
+    params = visitor_params.except(:document_number, :document_type)
+    params[:id] = 1
+    params
   end
 
   def valid_booking
     {
-      'booking_number' => '123',
-      'event_id' => 0,
-      'price' => 1000,
-      'ticket_type' => 'vip',
-      'status' => 'reserved'
-    }
-  end
-
-  def create_visitor
-    {
-      'id' => 0,
-      'first_name' => "Евгений",
-      'last_name' => "Черкасов",
-      'middle_name' => "Олегович",
-      'birthdate' => Date.new(2000, 12, 29).to_formatted_s(:db),
+      booking_number: '123',
+      event_id: 1,
+      price: 1000,
+      ticket_type: 'vip',
+      status: 'reserved'
     }
   end
 
