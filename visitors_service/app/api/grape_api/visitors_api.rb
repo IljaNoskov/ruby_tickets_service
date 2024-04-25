@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GrapeApi
+  # api для управления посетителями
   class VisitorsApi < Grape::API
     format :json
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GrapeApi
+  # определяет api для создания посетителя
   class CreateVisitorApi < Grape::API
     rescue_from ActiveRecord::RecordInvalid do |e|
       error!({ message: I18n.t(:uncorrect_params), errors: e.record.errors }, 406)

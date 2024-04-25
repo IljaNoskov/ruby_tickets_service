@@ -2,6 +2,7 @@
 
 class GrapeApi
   module Entities
+    # представление модели посетителя, возвращаемое пользователю
     class Visitor < Grape::Entity
       expose :id, documentation: { type: 'Integer', desc: 'Идентификатор посетителя', required: true }
       expose :first_name, documentation: { type: 'String', desc: 'Имя посетителя', required: true }

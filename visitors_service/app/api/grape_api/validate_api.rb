@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GrapeApi
+  # определяет api для проверок данных пользователя
   class ValidateApi < Grape::API
     rescue_from ActiveRecord::RecordNotFound do |_e|
       error!({ message: I18n.t(:not_found) }, 404)

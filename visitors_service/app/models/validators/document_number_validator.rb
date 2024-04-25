@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# валидатор номера документа
 class DocumentNumberValidator < ActiveModel::Validator
   DOCUMENTS_FORMATS = {
     passport: /\A\d{10}\z/,

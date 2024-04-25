@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# сервис проверки возраста посетителя
 class ValidateVisitorAgeService
   def self.call(id, age)
     visitor = Visitor.find(id)

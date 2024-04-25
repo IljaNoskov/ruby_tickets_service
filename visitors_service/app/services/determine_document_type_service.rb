@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# сервис определения типа документа по номеру документа
 class DetermineDocumentTypeService
   DOCUMENTS_FORMATS = {
     'passport' => /\A\d{10}\z/,
