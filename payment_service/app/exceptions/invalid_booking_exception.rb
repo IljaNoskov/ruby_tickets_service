@@ -1,2 +1,2 @@
-class InvalidBookingException < Exception
+class InvalidBookingException < RuntimeError
 end

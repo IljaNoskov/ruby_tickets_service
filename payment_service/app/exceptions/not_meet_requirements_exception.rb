@@ -1,2 +1,2 @@
-class NotMeetRequirementsException < Exception
+class NotMeetRequirementsException < RuntimeError
 end

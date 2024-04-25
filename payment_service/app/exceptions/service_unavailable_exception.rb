@@ -1,2 +1,2 @@
-class ServiceUnavailableException < Exception
+class ServiceUnavailableException < RuntimeError
 end
