@@ -7,7 +7,7 @@ class StartPaymentTransactionService
     ValidatePaymentRequestService.call(booking, visitor)
     payment = CreatePaymentTransactionService.call(booking, visitor)
 
-    UpdateBookingStatusService.buy(booking.booking_number)
+    UpdateBookingStatusService.buy(booking.booking_number, visitor.id)
 
     payment
   rescue RuntimeError => e

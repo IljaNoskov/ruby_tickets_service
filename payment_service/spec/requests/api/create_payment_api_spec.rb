@@ -82,7 +82,7 @@ describe GrapeApi::CreatePaymentApi do
         post url, params: { booking_number: booking_number, visitor: visitor_params }
 
         expect(
-          a_request(:put, Settings.update_booking_status_url).with(body: { 'booking_number' => booking_number })
+          a_request(:put, Settings.update_booking_status_url).with(body: { 'booking_number' => booking_number, 'visitor_id' => visitor_params['id'] })
         ).to have_been_made.times(2)
       end
     end

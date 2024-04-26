@@ -3,9 +3,9 @@
 # Сервис обновления статуса брони в соответсвии с результатом транзакции
 class UpdateBookingStatusService
   # уведомление сервиса брони об успешной оплате
-  def self.buy(booking_number)
+  def self.buy(booking_number, visitor_id)
     client = HTTPClient.new
-    response = client.delete Settings.buy_booking_url, { booking_number: booking_number }
+    response = client.delete Settings.buy_booking_url, { booking_number: booking_number, visitor_id: visitor_id }
 
     # response.status == 404 ??? те билет оплачен, а брони нет, ноу вей
     # rescue
