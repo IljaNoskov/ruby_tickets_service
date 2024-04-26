@@ -1,10 +1,10 @@
 version: '3'
 services:
   tickets: 
-    build: tickets
-    command: sh -c "rm -f /usr/src/tickets/tickets/tmp/pids/server.pid && cd tickets && rails server -b 0.0.0.0"
+    build: tickets/
+    command: "rails server -b 0.0.0.0"
     volumes:
-      - .:/usr/src/
+      - ./tickets/:/usr/src/
     environment:
       PORT: 3002
     ports:
@@ -19,6 +19,54 @@ services:
       POSTGRES_PASSWORD: password 
     volumes:
       - postgres:/var/lib/postgresql/data
-      - .:/src/tickets/
+
+  visitors_service:
+    build: visitors_service/
+    command: "rails server -b 0.0.0.0"
+    volumes:
+      - ./visitors_service/:/usr/src
+    ports:
+      - "3004:3004"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      PORT: 3004
+    depends_on:
+      - visitors_service_db
+
+  visitors_service_db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password 
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  payment_service:
+    build: payment_service/
+    command: "rails server -b 0.0.0.0"
+    volumes:
+      - .:/usr/src
+    ports:
+      - 3003:3003
+    environment:
+      PORT: 3003
+      REDIS_URL: redis://redis:6379/0
+      CREATE_VISITOR_URL: http://visitors-service:3002/visitors
+      FETCH_BOOKING_URL: http://booking-service:3001/bookings
+      BUY_BOOKING_URL: http://booking-service:3001/bookings
+      UPDATE_BOOKING_STATUS_URL: http://booking-service:3001/bookings
+      REQUIRED_AGE: 13
+    depends_on:
+      - payment_service_db
+
+  payment_service_db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password 
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
 volumes:
   postgres:
+
