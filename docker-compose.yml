@@ -5,8 +5,10 @@ services:
     command: sh -c "rm -f /usr/src/tickets/tickets/tmp/pids/server.pid && cd tickets && rails server -b 0.0.0.0"
     volumes:
       - .:/usr/src/
+    environment:
+      PORT: 3002
     ports:
-      - "3000:3000"
+      - "3002:3002"
     depends_on:
       - tickets_db
   

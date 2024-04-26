@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: development
+  database: tickets
 
 test:
   <<: *default
