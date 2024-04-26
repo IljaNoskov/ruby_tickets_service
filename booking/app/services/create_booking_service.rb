@@ -5,6 +5,7 @@ class CreateBookingService
   def self.call(params)
     client = HTTPClient.new
     uri = ENV['TICKETS_URL']
+    puts "передаю #{ENV['TICKETS_URL']}"
     body = { action: 'create', event_id: params[:event_id], type: params[:type] }
     response = client.put(uri, body)
     ticket = JSON.parse(response.body)

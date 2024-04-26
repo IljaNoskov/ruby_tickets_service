@@ -1,6 +1,9 @@
 class UpdateTicketService
     def self.create_booking(event_id, ticket_type)
-        ticket = Event.find(event_id).tickets.where(
+        unless Event.find_by(id: event_id)
+            return {status: 404, body: "not find event"}
+        end
+        ticket = Event.find_by(id: event_id).tickets.where(
             'ticket_type = :ticket_type and status = :ticket_status', ticket_type: ticket_type, ticket_status: 'free'
         ).first
         if ticket

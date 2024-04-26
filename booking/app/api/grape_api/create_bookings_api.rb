@@ -8,7 +8,7 @@ class GrapeApi
         requires :date, type: Date, desc: 'Date of event'
       end
       post do
-        booking = CreateBookingsService.call(params)
+        booking = CreateBookingService.call(params)
         present booking, with: GrapeApi::Entities::Booking
       end
     end

@@ -21,7 +21,6 @@ class GrapeApi
                     requires :vip_ticket_price, type: Float
                 end
                 post do
-                    puts params
                     created_event =  CreateEventService.create(params)
                 end
             end
