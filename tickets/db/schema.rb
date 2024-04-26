@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2024_04_23_191409) do
     t.date "date"
     t.integer "ordinary_ticket_count"
     t.integer "vip_ticket_count"
-    t.float "ordinary_ticket_price"
-    t.float "vip_ticket_price"
+    t.integer "ordinary_ticket_price"
+    t.integer "vip_ticket_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

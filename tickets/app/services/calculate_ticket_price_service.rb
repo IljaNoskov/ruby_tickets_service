@@ -17,7 +17,7 @@ class CalculateTicketPriceService
             if current_count != 0 and base_count != 0
                 part_of_buyed = ((base_count - current_count) / base_count.to_f).round(1, half: :down)
                 current_ticket_price = base_price * (1 + part_of_buyed)
-                result =  {status: 200, body: current_ticket_price}
+                result =  {status: 200, body: current_ticket_price.to_i}
             else 
                 result = {status: 200, body: "sold out"}
             end
