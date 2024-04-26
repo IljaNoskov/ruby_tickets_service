@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  host: tickets_db
+  host: db
   user: user
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -14,12 +14,12 @@ default: &default
 
 development:
   <<: *default
-  database: tickets
+  database: tickets-development
 
 test:
   <<: *default
-  database: test
+  database: tickets-test
 
 production:
   <<: *default
-  database: production
+  database: tickets-production

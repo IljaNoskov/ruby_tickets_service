@@ -14,12 +14,12 @@ default: &default
 
 development:
   <<: *default
-  database: development
+  database: booking-development
 
 test:
   <<: *default
-  database: test
+  database: booking-test
 
 production:
   <<: *default
-  database: production
+  database: booking-production
