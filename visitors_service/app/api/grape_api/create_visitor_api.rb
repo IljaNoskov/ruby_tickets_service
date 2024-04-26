@@ -10,7 +10,7 @@ class GrapeApi
     desc 'Создание нового посетителя или возвращение существующего с совпадающим документом',
          success: GrapeApi::Entities::Visitor, failure: [{ code: 406 }]
     params do
-      requires :visitor, type: Hash do
+      requires :visitor, type: JSON do
         requires :first_name, type: String
         requires :last_name, type: String
         optional :middle_name, type: String
@@ -20,6 +20,7 @@ class GrapeApi
       end
     end
     post do
+      Rails.logger.debug params[:visitor]
       visitor = CreateVisitorService.call params[:visitor]
       status 201
       present visitor, with: GrapeApi::Entities::Visitor
