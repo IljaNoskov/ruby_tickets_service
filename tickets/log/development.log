@@ -5902,3 +5902,676 @@ Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.2
   
 ActionController::RoutingError (No route matches [GET] "/sidekiq/stats"):
   
+Started GET "/" for 172.21.0.1 at 2024-04-26 09:23:33 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.9ms | Allocations: 349)
+Completed 200 OK in 27ms (Views: 9.6ms | ActiveRecord: 0.0ms | Allocations: 3186)
+
+
+Started GET "/" for 172.21.0.1 at 2024-04-26 09:23:35 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.8ms | Allocations: 442)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 1273)
+
+
+Started GET "/" for 172.21.0.1 at 2024-04-26 09:23:35 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.1.7.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | Allocations: 43)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 294)
+
+
+Started GET "/events" for 172.21.0.1 at 2024-04-26 09:23:45 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (2.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:19
+  Rendered events/index.html.erb within layouts/application (Duration: 18.7ms | Allocations: 2612)
+  Rendered layout layouts/application.html.erb (Duration: 33.2ms | Allocations: 7065)
+Completed 200 OK in 45ms (Views: 30.3ms | ActiveRecord: 6.5ms | Allocations: 9778)
+
+
+Started GET "/events/create" for 172.21.0.1 at 2024-04-26 09:23:51 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"create"}
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:63:in `set_event'
+Completed 404 Not Found in 26ms (ActiveRecord: 13.3ms | Allocations: 6065)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Event with 'id'=create):
+  
+app/controllers/events_controller.rb:63:in `set_event'
+Started GET "/events" for 172.21.0.1 at 2024-04-26 09:24:34 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:19
+  Rendered events/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1138)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 2822)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 0.9ms | Allocations: 3217)
+
+
+Started GET "/events/new" for 172.21.0.1 at 2024-04-26 09:24:36 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EventsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/_form.html.erb (Duration: 33.3ms | Allocations: 14175)
+  Rendered events/new.html.erb within layouts/application (Duration: 35.0ms | Allocations: 14549)
+  Rendered layout layouts/application.html.erb (Duration: 37.0ms | Allocations: 16109)
+Completed 200 OK in 43ms (Views: 37.7ms | ActiveRecord: 0.0ms | Allocations: 21146)
+
+
+Started GET "/events" for 172.21.0.1 at 2024-04-26 09:24:44 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EventsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:19
+  Rendered events/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1041)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2602)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 1.1ms | Allocations: 2898)
+
+
+Started GET "/api/events" for 172.21.0.1 at 2024-04-26 09:24:53 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+Started GET "/api/events/create" for 172.21.0.1 at 2024-04-26 09:24:58 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started POST "/api/events/create" for 172.21.0.1 at 2024-04-26 09:25:12 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started POST "/api/events/create" for 172.21.0.1 at 2024-04-26 09:28:44 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mEvent Create (2.3ms)[0m  [1m[32mINSERT INTO "events" ("name", "date", "ordinary_ticket_count", "vip_ticket_count", "ordinary_ticket_price", "vip_ticket_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "rock"], ["date", "2023-12-11"], ["ordinary_ticket_count", 10], ["vip_ticket_count", 5], ["ordinary_ticket_price", 1000.0], ["vip_ticket_price", 2000.0], ["created_at", "2024-04-26 09:28:44.316415"], ["updated_at", "2024-04-26 09:28:44.316415"]]
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/services/create_event_service.rb:19:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (3.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.364173"], ["updated_at", "2024-04-26 09:28:44.364173"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.373931"], ["updated_at", "2024-04-26 09:28:44.373931"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.383091"], ["updated_at", "2024-04-26 09:28:44.383091"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.390277"], ["updated_at", "2024-04-26 09:28:44.390277"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.399501"], ["updated_at", "2024-04-26 09:28:44.399501"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.406641"], ["updated_at", "2024-04-26 09:28:44.406641"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.416124"], ["updated_at", "2024-04-26 09:28:44.416124"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.423078"], ["updated_at", "2024-04-26 09:28:44.423078"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.432655"], ["updated_at", "2024-04-26 09:28:44.432655"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.454146"], ["updated_at", "2024-04-26 09:28:44.454146"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.463684"], ["updated_at", "2024-04-26 09:28:44.463684"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.471169"], ["updated_at", "2024-04-26 09:28:44.471169"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.479882"], ["updated_at", "2024-04-26 09:28:44.479882"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.486851"], ["updated_at", "2024-04-26 09:28:44.486851"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 09:28:44.494362"], ["updated_at", "2024-04-26 09:28:44.494362"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/services/create_event_service.rb:20:in `create'
+Started GET "/api/tickets/price?event_id=1&%27ype=vip" for 172.21.0.1 at 2024-04-26 09:31:09 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 09:31:24 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (11.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets" for 172.21.0.1 at 2024-04-26 09:32:29 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.0ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets"[0m
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 09:35:05 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/info?ticket_id=3" for 172.21.0.1 at 2024-04-26 09:37:02 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (uninitialized constant GrapeApi::TicketsApi::GetTicketService
+Did you mean?  GetTicktService):
+  
+app/api/grape_api/tickets_api.rb:61:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/info?ticket_id=32" for 172.21.0.1 at 2024-04-26 09:38:44 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (uninitialized constant GrapeApi::TicketsApi::GetTicketService
+Did you mean?  GetTicktService):
+  
+app/api/grape_api/tickets_api.rb:61:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/info?ticket_id=16" for 172.21.0.1 at 2024-04-26 09:38:58 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (uninitialized constant GrapeApi::TicketsApi::GetTicketService
+Did you mean?  GetTicktService):
+  
+app/api/grape_api/tickets_api.rb:61:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/info?ticket_id=16" for 172.21.0.1 at 2024-04-26 09:39:30 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (uninitialized constant GrapeApi::TicketsApi::GetTicketService
+Did you mean?  GetTicktService):
+  
+app/api/grape_api/tickets_api.rb:61:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/info?ticket_id=16" for 172.21.0.1 at 2024-04-26 09:40:01 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.8ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started GET "/api/tickets/info?ticket_id=16" for 172.21.0.1 at 2024-04-26 09:40:03 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started GET "/api/tickets/info?ticket_id=2" for 172.21.0.1 at 2024-04-26 09:40:09 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+  
+NameError (undefined local variable or method `ticket_type' for GetTicketService:Class
+Did you mean?  ticket):
+  
+app/services/get_ticket_service.rb:11:in `get_ticket'
+app/api/grape_api/tickets_api.rb:61:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/info?ticket_id=2" for 172.21.0.1 at 2024-04-26 09:40:32 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:42:13 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/tickets/tickets/app/services/update_ticket_service.rb:29: syntax error, unexpected elsif, expecting end
+        elsif ticket.status == 'booking'
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:45: syntax error, unexpected elsif, expecting end
+        elsif ticket.status == 'booking'
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:67: syntax error, unexpected elsif, expecting end
+        elsif block and ticket.status == '...
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:76: syntax error, unexpected elsif, expecting end
+        elsif block
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:78: syntax error, unexpected elsif, expecting end
+        elsif ticket.status != 'block'
+        ^~~~~):
+  
+app/services/update_ticket_service.rb:29: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:45: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:67: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:76: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:78: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:29: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:45: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:67: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:76: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:78: syntax error, unexpected elsif, expecting end
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:43:57 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/tickets/tickets/app/services/update_ticket_service.rb:28: syntax error, unexpected elsif, expecting end
+        elsif ticket.status == 'booking'
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:43: syntax error, unexpected elsif, expecting end
+        elsif ticket.status == 'booking'
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:64: syntax error, unexpected elsif, expecting end
+        elsif block and ticket.status == '...
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:73: syntax error, unexpected elsif, expecting end
+        elsif block
+        ^~~~~
+/usr/src/tickets/tickets/app/services/update_ticket_service.rb:75: syntax error, unexpected elsif, expecting end
+        elsif ticket.status != 'block'
+        ^~~~~):
+  
+app/services/update_ticket_service.rb:28: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:43: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:64: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:73: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:75: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:28: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:43: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:64: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:73: syntax error, unexpected elsif, expecting end
+app/services/update_ticket_service.rb:75: syntax error, unexpected elsif, expecting end
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:46:10 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (undefined local variable or method `seld' for UpdateTicketService:Class
+Did you mean?  self
+               send):
+  
+app/services/update_ticket_service.rb:24:in `<class:UpdateTicketService>'
+app/services/update_ticket_service.rb:1:in `<main>'
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:46:29 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  
+ActiveRecord::PreparedStatementInvalid (missing value for :ticket_status in ticket_type = :ticket_type and status = :ticket_status):
+  
+app/services/update_ticket_service.rb:3:in `create_booking'
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:47:14 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  
+ActiveRecord::PreparedStatementInvalid (missing value for :ticket_status in ticket_type = :ticket_type and status = :ticket_status):
+  
+app/services/update_ticket_service.rb:3:in `create_booking'
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:47:34 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.2ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:47:34.474884"], ["id", 11]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+  
+NoMethodError (undefined method `status' for "vip":String):
+  
+app/services/update_ticket_service.rb:14:in `create_booking'
+app/api/grape_api/tickets_api.rb:43:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:48:02 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.2ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.6ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:48:02.342719"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:48:20 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (2.6ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:50:20 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTicket Update (2.0ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "free"], ["updated_at", "2024-04-26 09:50:20.880586"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:50:26 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.2ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:51:53 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.9ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:52:00 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.2ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.4ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:52:00.509663"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (2.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:52:06 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.6ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTicket Update (1.7ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "free"], ["updated_at", "2024-04-26 09:52:06.306622"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTRANSACTION (14.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:52:18 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.0ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:52:38 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.6ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:52:43 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.5ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.8ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:52:43.288655"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:52:47 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:52:56 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.0ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mEvent Load (2.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTicket Update (1.5ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "free"], ["updated_at", "2024-04-26 09:52:56.046726"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:54:18 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.8ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:54:22 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.3ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.1ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:54:22.865820"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:54:26 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.3ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:23:in `delete_booking'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTicket Update (1.6ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "free"], ["updated_at", "2024-04-26 09:54:26.550023"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:28:in `delete_booking'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:54:48 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.9ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.0ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 09:54:48.815675"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.21.0.1 at 2024-04-26 09:54:54 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.9ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:37:in `buy_ticket'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:44:in `buy_ticket'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:44:in `buy_ticket'
+  [1m[36mTicket Update (1.8ms)[0m  [1m[33mUPDATE "tickets" SET "user_id" = $1, "status" = $2, "updated_at" = $3 WHERE "tickets"."id" = $4[0m  [["user_id", 42], ["status", "buy"], ["updated_at", "2024-04-26 09:54:54.142221"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:44:in `buy_ticket'
+  [1m[36mTRANSACTION (10.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:44:in `buy_ticket'
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 09:56:53 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 09:57:10 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+NameError (undefined local variable or method `ticket_id' for #<#<Class:0x00007666e08ee0c8>:0x00007666d8162398>):
+  
+app/api/grape_api/tickets_api.rb:75:in `block (3 levels) in <class:TicketsApi>'
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 09:57:51 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.0ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:58:in `block_ticket'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mTicket Update (1.6ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "block"], ["updated_at", "2024-04-26 09:57:52.026947"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 09:59:01 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.7ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:58:in `block_ticket'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+Started GET "/api/tickets/info?ticket_id=12" for 172.21.0.1 at 2024-04-26 09:59:13 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (1.5ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/get_ticket_service.rb:3:in `get_ticket'
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 09:59:17 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.6ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:58:in `block_ticket'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:63:in `block_ticket'
+Started PUT "/api/tickets/block" for 172.21.0.1 at 2024-04-26 10:01:12 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (2.8ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:58:in `block_ticket'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:72:in `block_ticket'
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:72:in `block_ticket'
+  [1m[36mTicket Update (1.4ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "buy"], ["updated_at", "2024-04-26 10:01:12.105831"], ["id", 12]]
+  ↳ app/services/update_ticket_service.rb:72:in `block_ticket'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:72:in `block_ticket'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:01:21 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:01:23 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:01:24 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:02:23 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:02:55 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "ordinary"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:8:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:03:21 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started GET "/api/tickets" for 172.21.0.1 at 2024-04-26 10:03:51 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTicket Load (0.9ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets"[0m
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:05:13 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:05:39 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:05:52 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/tickets/tickets/app/services/calculate_ticket_price_service.rb:29: unterminated regexp meets end of file
+/usr/src/tickets/tickets/app/services/calculate_ticket_price_service.rb:29: syntax error, unexpected end-of-input, expecting end):
+  
+app/services/calculate_ticket_price_service.rb:29: unterminated regexp meets end of file
+app/services/calculate_ticket_price_service.rb:29: syntax error, unexpected end-of-input, expecting end
+app/services/calculate_ticket_price_service.rb:29: unterminated regexp meets end of file
+app/services/calculate_ticket_price_service.rb:29: syntax error, unexpected end-of-input, expecting end
+app/api/grape_api/tickets_api.rb:24:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:06:59 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/tickets/tickets/app/services/calculate_ticket_price_service.rb:31: unterminated regexp meets end of file
+/usr/src/tickets/tickets/app/services/calculate_ticket_price_service.rb:31: syntax error, unexpected end-of-input, expecting end):
+  
+app/services/calculate_ticket_price_service.rb:31: unterminated regexp meets end of file
+app/services/calculate_ticket_price_service.rb:31: syntax error, unexpected end-of-input, expecting end
+app/services/calculate_ticket_price_service.rb:31: unterminated regexp meets end of file
+app/services/calculate_ticket_price_service.rb:31: syntax error, unexpected end-of-input, expecting end
+app/api/grape_api/tickets_api.rb:24:in `block (3 levels) in <class:TicketsApi>'
+Started GET "/api/tickets/price?event_id=1&type=vip" for 172.21.0.1 at 2024-04-26 10:08:45 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'

@@ -8,7 +8,7 @@ class GetTicketService
                 id: ticket.id,
                 event_id: ticket.event_id,
                 type: ticket.ticket_type, 
-                status: ticket_type.status,
+                status: ticket.status,
                 user_id: ticket.user_id
                 }
             }
