@@ -45,7 +45,7 @@ services:
     build: payment_service/
     command: "rails server -b 0.0.0.0"
     volumes:
-      - .:/usr/src
+      - ./payment_service/:/usr/src
     ports:
       - 3003:3003
     environment:
@@ -68,10 +68,10 @@ services:
       - postgres:/var/lib/postgresql/data
 
   tourniquet_app: 
-    build: .
-    command: rails s -b 0.0.0.0 
+    build: tourniquet/
+    command: "rails s -b 0.0.0.0"
     volumes:
-      - .:/usr/src
+      - ./tourniquet/:/usr/src
     environment:
       PORT: 3003
     ports:
@@ -79,7 +79,7 @@ services:
     depends_on:
       - tourniquet_db
     env_file:
-      - .env 
+      - tourniquet/.env 
 
   tourniquet_db:
     image: postgres:11.5
@@ -95,25 +95,25 @@ services:
     - redis:/data
 
   sidekiq:
-    build: .
+    build: booking/
     command: sidekiq
     environment:
       REDIS_URL: redis://redis:6379/0
     volumes:
-      - .:/usr/src
+      - ./booking/:/usr/src
   
-  booking: 
+  booking:
     build: booking/
     command: rails s -b 0.0.0.0 
     environment:
       REDIS_URL: redis://redis:6379/0
       PORT: 3001
     volumes:
-      - .:/usr/src
+      - ./booking/:/usr/src
     ports:
       - "3001:3001"
     env_file:
-      - .env
+      - booking/.env
     depends_on:
       - booking_db
 
