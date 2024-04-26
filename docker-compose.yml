@@ -55,7 +55,6 @@ services:
       PATH_TO_VISITOR_VALIDATE: http://visitors:3002/api/visitors/validate?
       PATH_TO_TICKET_BLOCK: http://tickets:3002/api/tickets/block?
       PATH_TO_TICKET_INFO: http://tickets:3002/api/tickets/info?
-
     depends_on:
       - db
 
@@ -77,7 +76,7 @@ services:
     volumes:
       - redis:/data
   sidekiq:
-    build: /booking
+    build: booking/
     command: sidekiq
     volumes:
       - ./booking/:/usr/src
