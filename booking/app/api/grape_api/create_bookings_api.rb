@@ -8,27 +8,7 @@ class GrapeApi
         requires :date, type: Date, desc: 'Date of event'
       end
       post do
-        booking = Booking.new
-        client = HTTPClient.new
-        uri = ENV['TICKETS_URL']
-        body = { action: 'create', event_id: params[:event_id], type: params[:type] }
-        response = client.put(uri, body)
-        ticket = JSON.parse(response.body)
-        if response.status == 201
-          booking = Booking.new(
-            ticket_type: params[:type], 
-            event_id: params[:event_id], 
-            booking_number: SecureRandom.uuid, 
-            status: 'reserved',
-            ticket_id: ticket['id'],
-            price: ticket['price']
-          )
-          error!({ message: 'something goes wrong' }, 406) unless booking
-          booking.save
-          BookingControlJob.perform_in(5.minute, booking.booking_number)
-        else 
-          { message: 'ticket already reserved', status: 406 }
-        end
+        booking = CreateBookingsService.call(params)
         present booking, with: GrapeApi::Entities::Booking
       end
     end

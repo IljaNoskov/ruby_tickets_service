@@ -1,4 +1,4 @@
-class DeleteBookingsSevice 
+class DeleteBookingsService 
   def self.call(params)
     booking = Booking.find_by(booking_number: params[:booking_number])
     error!({ message: 'booking not found' }, 404) unless booking

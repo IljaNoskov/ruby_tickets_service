@@ -14,8 +14,8 @@ class CreateBookingService
         event_id: params[:event_id], 
         booking_number: SecureRandom.uuid, 
         status: 'reserved',
-        ticket_id: ticket.id,
-        price: ticket.price
+        ticket_id: ticket['id'],
+        price: ticket['price']
       )
       error!({ message: 'something goes wrong' }, 406) unless booking
       booking.save

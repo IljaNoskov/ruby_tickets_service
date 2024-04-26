@@ -7,7 +7,7 @@ class GrapeApi
         optional :visitor_id, type: Integer, desc: 'User id'
       end
       delete do
-        booking = DeleteBookingsSevice(params)
+        booking = DeleteBookingsService(params)
         present booking
       end
     end 
