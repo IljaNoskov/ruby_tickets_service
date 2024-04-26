@@ -35,6 +35,7 @@ services:
   #     REDIS_URL: redis://redis:6379/0
   #   depends_on:
   #     - redis
+
   db:
     image: postgres:11.5
     environment:
@@ -47,4 +48,3 @@ volumes:
   db:
   # rabbit:
   # redis:
-
