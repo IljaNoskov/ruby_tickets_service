@@ -6575,3 +6575,1381 @@ Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.2
   ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
   [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
   ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+  [1m[35m (354.6ms)[0m  [1m[35mCREATE DATABASE "tickets-development" ENCODING = 'utf8'[0m
+  [1m[35m (312.5ms)[0m  [1m[35mCREATE DATABASE "tickets-test" ENCODING = 'utf8'[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6581360430982643250)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTickets (20240423184005)
+  [1m[36mTRANSACTION (26.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "tickets" ("id" bigserial primary key, "user_id" integer, "ticket_type" character varying, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240423184005"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20240423184428)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "name" character varying, "date" date, "ordinary_ticket_count" integer, "vip_ticket_count" integer, "ordinary_ticket_price" float, "vip_ticket_price" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240423184428"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddEventRefToTickets (20240423191409)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "tickets" ADD "event_id" bigint NOT NULL[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE INDEX "index_tickets_on_event_id" ON "tickets" ("event_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "tickets" ADD CONSTRAINT "fk_rails_4def87ea62"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240423191409"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-04-26 16:11:36.476391"], ["updated_at", "2024-04-26 16:11:36.476391"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6581360430982643250)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/tickets/events/create" for 172.19.0.1 at 2024-04-26 16:54:35 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/tickets/events/create"):
+  
+Started POST "/api/events/create" for 172.19.0.1 at 2024-04-26 16:55:00 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mEvent Create (4.5ms)[0m  [1m[32mINSERT INTO "events" ("name", "date", "ordinary_ticket_count", "vip_ticket_count", "ordinary_ticket_price", "vip_ticket_price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Rock"], ["date", "2024-04-26"], ["ordinary_ticket_count", 100], ["vip_ticket_count", 100], ["ordinary_ticket_price", 1000.0], ["vip_ticket_price", 3000.0], ["created_at", "2024-04-26 16:55:04.857763"], ["updated_at", "2024-04-26 16:55:04.857763"]]
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_event_service.rb:11:in `create'
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/services/create_event_service.rb:19:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (4.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.249899"], ["updated_at", "2024-04-26 16:55:05.249899"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.263061"], ["updated_at", "2024-04-26 16:55:05.263061"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.274405"], ["updated_at", "2024-04-26 16:55:05.274405"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.285878"], ["updated_at", "2024-04-26 16:55:05.285878"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.296921"], ["updated_at", "2024-04-26 16:55:05.296921"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.307980"], ["updated_at", "2024-04-26 16:55:05.307980"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.319136"], ["updated_at", "2024-04-26 16:55:05.319136"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.330053"], ["updated_at", "2024-04-26 16:55:05.330053"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.342365"], ["updated_at", "2024-04-26 16:55:05.342365"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.353230"], ["updated_at", "2024-04-26 16:55:05.353230"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.363708"], ["updated_at", "2024-04-26 16:55:05.363708"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.375191"], ["updated_at", "2024-04-26 16:55:05.375191"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.386341"], ["updated_at", "2024-04-26 16:55:05.386341"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.401376"], ["updated_at", "2024-04-26 16:55:05.401376"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.412631"], ["updated_at", "2024-04-26 16:55:05.412631"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.422316"], ["updated_at", "2024-04-26 16:55:05.422316"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.434531"], ["updated_at", "2024-04-26 16:55:05.434531"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.445474"], ["updated_at", "2024-04-26 16:55:05.445474"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.455292"], ["updated_at", "2024-04-26 16:55:05.455292"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.466036"], ["updated_at", "2024-04-26 16:55:05.466036"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.477886"], ["updated_at", "2024-04-26 16:55:05.477886"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.488221"], ["updated_at", "2024-04-26 16:55:05.488221"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.501062"], ["updated_at", "2024-04-26 16:55:05.501062"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.511825"], ["updated_at", "2024-04-26 16:55:05.511825"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.522158"], ["updated_at", "2024-04-26 16:55:05.522158"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.547896"], ["updated_at", "2024-04-26 16:55:05.547896"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.559772"], ["updated_at", "2024-04-26 16:55:05.559772"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.569961"], ["updated_at", "2024-04-26 16:55:05.569961"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.580528"], ["updated_at", "2024-04-26 16:55:05.580528"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.591134"], ["updated_at", "2024-04-26 16:55:05.591134"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.602569"], ["updated_at", "2024-04-26 16:55:05.602569"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.613148"], ["updated_at", "2024-04-26 16:55:05.613148"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.623910"], ["updated_at", "2024-04-26 16:55:05.623910"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.634339"], ["updated_at", "2024-04-26 16:55:05.634339"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.643503"], ["updated_at", "2024-04-26 16:55:05.643503"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.654388"], ["updated_at", "2024-04-26 16:55:05.654388"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.665596"], ["updated_at", "2024-04-26 16:55:05.665596"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.676044"], ["updated_at", "2024-04-26 16:55:05.676044"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.685378"], ["updated_at", "2024-04-26 16:55:05.685378"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.695627"], ["updated_at", "2024-04-26 16:55:05.695627"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.706338"], ["updated_at", "2024-04-26 16:55:05.706338"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.716407"], ["updated_at", "2024-04-26 16:55:05.716407"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.726812"], ["updated_at", "2024-04-26 16:55:05.726812"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.736183"], ["updated_at", "2024-04-26 16:55:05.736183"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.746104"], ["updated_at", "2024-04-26 16:55:05.746104"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.755891"], ["updated_at", "2024-04-26 16:55:05.755891"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.766649"], ["updated_at", "2024-04-26 16:55:05.766649"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.777470"], ["updated_at", "2024-04-26 16:55:05.777470"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.786822"], ["updated_at", "2024-04-26 16:55:05.786822"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.796982"], ["updated_at", "2024-04-26 16:55:05.796982"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.807720"], ["updated_at", "2024-04-26 16:55:05.807720"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.817545"], ["updated_at", "2024-04-26 16:55:05.817545"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.826430"], ["updated_at", "2024-04-26 16:55:05.826430"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.835881"], ["updated_at", "2024-04-26 16:55:05.835881"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.844983"], ["updated_at", "2024-04-26 16:55:05.844983"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.854643"], ["updated_at", "2024-04-26 16:55:05.854643"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.879100"], ["updated_at", "2024-04-26 16:55:05.879100"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.891494"], ["updated_at", "2024-04-26 16:55:05.891494"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.902287"], ["updated_at", "2024-04-26 16:55:05.902287"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.925378"], ["updated_at", "2024-04-26 16:55:05.925378"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.939314"], ["updated_at", "2024-04-26 16:55:05.939314"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.952119"], ["updated_at", "2024-04-26 16:55:05.952119"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.961441"], ["updated_at", "2024-04-26 16:55:05.961441"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.971197"], ["updated_at", "2024-04-26 16:55:05.971197"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.982605"], ["updated_at", "2024-04-26 16:55:05.982605"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:05.993920"], ["updated_at", "2024-04-26 16:55:05.993920"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.004850"], ["updated_at", "2024-04-26 16:55:06.004850"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.014567"], ["updated_at", "2024-04-26 16:55:06.014567"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.024912"], ["updated_at", "2024-04-26 16:55:06.024912"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.035121"], ["updated_at", "2024-04-26 16:55:06.035121"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.044738"], ["updated_at", "2024-04-26 16:55:06.044738"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.053868"], ["updated_at", "2024-04-26 16:55:06.053868"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.064122"], ["updated_at", "2024-04-26 16:55:06.064122"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.074151"], ["updated_at", "2024-04-26 16:55:06.074151"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.084040"], ["updated_at", "2024-04-26 16:55:06.084040"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.093975"], ["updated_at", "2024-04-26 16:55:06.093975"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.103897"], ["updated_at", "2024-04-26 16:55:06.103897"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.114029"], ["updated_at", "2024-04-26 16:55:06.114029"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.123591"], ["updated_at", "2024-04-26 16:55:06.123591"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.133300"], ["updated_at", "2024-04-26 16:55:06.133300"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.142767"], ["updated_at", "2024-04-26 16:55:06.142767"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.151637"], ["updated_at", "2024-04-26 16:55:06.151637"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.160864"], ["updated_at", "2024-04-26 16:55:06.160864"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.170268"], ["updated_at", "2024-04-26 16:55:06.170268"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.179314"], ["updated_at", "2024-04-26 16:55:06.179314"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.189161"], ["updated_at", "2024-04-26 16:55:06.189161"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.210993"], ["updated_at", "2024-04-26 16:55:06.210993"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.221561"], ["updated_at", "2024-04-26 16:55:06.221561"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.231090"], ["updated_at", "2024-04-26 16:55:06.231090"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.240914"], ["updated_at", "2024-04-26 16:55:06.240914"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.251051"], ["updated_at", "2024-04-26 16:55:06.251051"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.260587"], ["updated_at", "2024-04-26 16:55:06.260587"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.269659"], ["updated_at", "2024-04-26 16:55:06.269659"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.279536"], ["updated_at", "2024-04-26 16:55:06.279536"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.288462"], ["updated_at", "2024-04-26 16:55:06.288462"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.298518"], ["updated_at", "2024-04-26 16:55:06.298518"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.308375"], ["updated_at", "2024-04-26 16:55:06.308375"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.318129"], ["updated_at", "2024-04-26 16:55:06.318129"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.327192"], ["updated_at", "2024-04-26 16:55:06.327192"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "ordinary"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.336428"], ["updated_at", "2024-04-26 16:55:06.336428"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:10:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.345994"], ["updated_at", "2024-04-26 16:55:06.345994"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.355315"], ["updated_at", "2024-04-26 16:55:06.355315"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.365061"], ["updated_at", "2024-04-26 16:55:06.365061"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.375181"], ["updated_at", "2024-04-26 16:55:06.375181"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.385136"], ["updated_at", "2024-04-26 16:55:06.385136"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.394771"], ["updated_at", "2024-04-26 16:55:06.394771"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.405006"], ["updated_at", "2024-04-26 16:55:06.405006"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.414250"], ["updated_at", "2024-04-26 16:55:06.414250"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.424268"], ["updated_at", "2024-04-26 16:55:06.424268"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.434541"], ["updated_at", "2024-04-26 16:55:06.434541"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.444543"], ["updated_at", "2024-04-26 16:55:06.444543"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.454598"], ["updated_at", "2024-04-26 16:55:06.454598"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.464133"], ["updated_at", "2024-04-26 16:55:06.464133"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.474010"], ["updated_at", "2024-04-26 16:55:06.474010"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.485029"], ["updated_at", "2024-04-26 16:55:06.485029"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.496179"], ["updated_at", "2024-04-26 16:55:06.496179"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.519149"], ["updated_at", "2024-04-26 16:55:06.519149"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (2.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.529758"], ["updated_at", "2024-04-26 16:55:06.529758"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.540504"], ["updated_at", "2024-04-26 16:55:06.540504"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.550809"], ["updated_at", "2024-04-26 16:55:06.550809"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.560678"], ["updated_at", "2024-04-26 16:55:06.560678"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.570032"], ["updated_at", "2024-04-26 16:55:06.570032"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.579186"], ["updated_at", "2024-04-26 16:55:06.579186"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.588443"], ["updated_at", "2024-04-26 16:55:06.588443"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.597588"], ["updated_at", "2024-04-26 16:55:06.597588"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.606542"], ["updated_at", "2024-04-26 16:55:06.606542"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.616998"], ["updated_at", "2024-04-26 16:55:06.616998"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.627258"], ["updated_at", "2024-04-26 16:55:06.627258"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.636725"], ["updated_at", "2024-04-26 16:55:06.636725"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.645456"], ["updated_at", "2024-04-26 16:55:06.645456"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.654050"], ["updated_at", "2024-04-26 16:55:06.654050"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.663341"], ["updated_at", "2024-04-26 16:55:06.663341"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.672960"], ["updated_at", "2024-04-26 16:55:06.672960"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.682050"], ["updated_at", "2024-04-26 16:55:06.682050"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.691244"], ["updated_at", "2024-04-26 16:55:06.691244"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.700584"], ["updated_at", "2024-04-26 16:55:06.700584"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.709902"], ["updated_at", "2024-04-26 16:55:06.709902"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.719505"], ["updated_at", "2024-04-26 16:55:06.719505"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.729505"], ["updated_at", "2024-04-26 16:55:06.729505"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.739377"], ["updated_at", "2024-04-26 16:55:06.739377"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.749737"], ["updated_at", "2024-04-26 16:55:06.749737"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.759602"], ["updated_at", "2024-04-26 16:55:06.759602"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.770377"], ["updated_at", "2024-04-26 16:55:06.770377"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.779409"], ["updated_at", "2024-04-26 16:55:06.779409"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.788455"], ["updated_at", "2024-04-26 16:55:06.788455"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.813252"], ["updated_at", "2024-04-26 16:55:06.813252"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.824343"], ["updated_at", "2024-04-26 16:55:06.824343"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.836879"], ["updated_at", "2024-04-26 16:55:06.836879"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.848025"], ["updated_at", "2024-04-26 16:55:06.848025"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.4ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.859879"], ["updated_at", "2024-04-26 16:55:06.859879"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.870871"], ["updated_at", "2024-04-26 16:55:06.870871"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.887507"], ["updated_at", "2024-04-26 16:55:06.887507"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (2.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.905174"], ["updated_at", "2024-04-26 16:55:06.905174"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.920804"], ["updated_at", "2024-04-26 16:55:06.920804"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.936561"], ["updated_at", "2024-04-26 16:55:06.936561"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.947476"], ["updated_at", "2024-04-26 16:55:06.947476"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.957998"], ["updated_at", "2024-04-26 16:55:06.957998"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.970065"], ["updated_at", "2024-04-26 16:55:06.970065"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.7ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:06.991640"], ["updated_at", "2024-04-26 16:55:06.991640"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.012513"], ["updated_at", "2024-04-26 16:55:07.012513"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.026052"], ["updated_at", "2024-04-26 16:55:07.026052"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.037697"], ["updated_at", "2024-04-26 16:55:07.037697"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.050018"], ["updated_at", "2024-04-26 16:55:07.050018"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.060616"], ["updated_at", "2024-04-26 16:55:07.060616"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.070991"], ["updated_at", "2024-04-26 16:55:07.070991"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.081063"], ["updated_at", "2024-04-26 16:55:07.081063"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.090984"], ["updated_at", "2024-04-26 16:55:07.090984"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.100964"], ["updated_at", "2024-04-26 16:55:07.100964"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.110327"], ["updated_at", "2024-04-26 16:55:07.110327"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.120971"], ["updated_at", "2024-04-26 16:55:07.120971"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.7ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.130939"], ["updated_at", "2024-04-26 16:55:07.130939"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.141512"], ["updated_at", "2024-04-26 16:55:07.141512"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.152868"], ["updated_at", "2024-04-26 16:55:07.152868"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.176465"], ["updated_at", "2024-04-26 16:55:07.176465"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.187461"], ["updated_at", "2024-04-26 16:55:07.187461"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.197409"], ["updated_at", "2024-04-26 16:55:07.197409"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.208034"], ["updated_at", "2024-04-26 16:55:07.208034"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.219664"], ["updated_at", "2024-04-26 16:55:07.219664"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.229830"], ["updated_at", "2024-04-26 16:55:07.229830"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.239787"], ["updated_at", "2024-04-26 16:55:07.239787"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.249551"], ["updated_at", "2024-04-26 16:55:07.249551"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.259980"], ["updated_at", "2024-04-26 16:55:07.259980"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.8ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.270237"], ["updated_at", "2024-04-26 16:55:07.270237"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.278866"], ["updated_at", "2024-04-26 16:55:07.278866"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.288322"], ["updated_at", "2024-04-26 16:55:07.288322"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.298077"], ["updated_at", "2024-04-26 16:55:07.298077"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.307520"], ["updated_at", "2024-04-26 16:55:07.307520"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.317105"], ["updated_at", "2024-04-26 16:55:07.317105"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.327763"], ["updated_at", "2024-04-26 16:55:07.327763"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.337606"], ["updated_at", "2024-04-26 16:55:07.337606"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.346660"], ["updated_at", "2024-04-26 16:55:07.346660"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.5ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.355842"], ["updated_at", "2024-04-26 16:55:07.355842"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.6ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.365737"], ["updated_at", "2024-04-26 16:55:07.365737"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.376224"], ["updated_at", "2024-04-26 16:55:07.376224"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.386738"], ["updated_at", "2024-04-26 16:55:07.386738"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.396382"], ["updated_at", "2024-04-26 16:55:07.396382"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.405681"], ["updated_at", "2024-04-26 16:55:07.405681"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.2ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.416124"], ["updated_at", "2024-04-26 16:55:07.416124"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.0ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.425813"], ["updated_at", "2024-04-26 16:55:07.425813"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTicket Create (1.1ms)[0m  [1m[32mINSERT INTO "tickets" ("ticket_type", "status", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticket_type", "vip"], ["status", "free"], ["created_at", "2024-04-26 16:55:07.435672"], ["updated_at", "2024-04-26 16:55:07.435672"], ["event_id", 1]]
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_tickets_service.rb:13:in `block in create'
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/services/create_event_service.rb:20:in `create'
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets-system-tickets-1
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked host: tickets
+Started PUT "/api/tickets/booking" for 172.19.0.6 at 2024-04-26 17:46:48 +0000
+Cannot render console from 172.19.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.8ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (3.3ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 17:46:49.847388"], ["id", 101]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.5 at 2024-04-26 18:25:34 +0000
+Cannot render console from 172.19.0.5! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.5ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (2.1ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:25:34.761448"], ["id", 102]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.5 at 2024-04-26 18:28:02 +0000
+Cannot render console from 172.19.0.5! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (2.2ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (2.0ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:28:03.695727"], ["id", 103]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.8 at 2024-04-26 18:29:16 +0000
+Cannot render console from 172.19.0.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.4ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.2ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:29:17.612003"], ["id", 104]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.8 at 2024-04-26 18:30:38 +0000
+Cannot render console from 172.19.0.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.3ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.2ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:30:39.496705"], ["id", 105]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.8 at 2024-04-26 18:35:19 +0000
+Cannot render console from 172.19.0.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.5ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.5ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:35:20.632460"], ["id", 106]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'
+Started PUT "/api/tickets/booking" for 172.19.0.5 at 2024-04-26 18:41:11 +0000
+Cannot render console from 172.19.0.5! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:3:in `create_booking'
+  [1m[36mTicket Load (1.5ms)[0m  [1m[34mSELECT "tickets".* FROM "tickets" WHERE "tickets"."event_id" = $1 AND (ticket_type = 'vip' and status = 'free') ORDER BY "tickets"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/services/update_ticket_service.rb:5:in `create_booking'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTicket Update (1.7ms)[0m  [1m[33mUPDATE "tickets" SET "status" = $1, "updated_at" = $2 WHERE "tickets"."id" = $3[0m  [["status", "booking"], ["updated_at", "2024-04-26 18:41:12.003220"], ["id", 107]]
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_ticket_service.rb:8:in `create_booking'
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/services/calculate_ticket_price_service.rb:3:in `calculate_price'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tickets" WHERE "tickets"."event_id" = $1 AND "tickets"."ticket_type" = $2 AND "tickets"."status" = $3[0m  [["event_id", 1], ["ticket_type", "vip"], ["status", "free"]]
+  ↳ app/services/calculate_ticket_price_service.rb:12:in `calculate_price'

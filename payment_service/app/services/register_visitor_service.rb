@@ -6,7 +6,9 @@ class RegisterVisitorService
   # метод вызова сервиса
   def self.call(visitor)
     client = HTTPClient.new
-    response = client.post Settings.create_visitor_url, { visitor: visitor }
+
+    body = { visitor: visitor.to_json }
+    response = client.post(Settings.create_visitor_url, :body => body)
     result = JSON.parse(response.content)
 
     raise VisitorRegistrationException, result unless response.ok?

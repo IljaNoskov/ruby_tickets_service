@@ -1,5 +1,7 @@
+
 */log/*
-*/tmp/*
+**/tmp
+*/tmp/cache/*
 *!/log/.keep
 *!/tmp/.keep
 
@@ -8,5 +10,5 @@
 *!/tmp/pids/.keep
 
 */config/master.key
-*/coverage/*
 
+*/coverage/*

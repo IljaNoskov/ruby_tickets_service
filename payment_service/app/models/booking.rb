@@ -4,7 +4,7 @@
 class Booking
   include ActiveModel::Model
 
-  attr_accessor :booking_number, :price, :ticket_type, :event_id, :status
+  attr_accessor :booking_number, :price, :ticket_type, :event_id, :status, :id, :ticket_id, :created_at, :updated_at
 
   # метод получения id
   def id

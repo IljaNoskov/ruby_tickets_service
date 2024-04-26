@@ -34,6 +34,8 @@ class GrapeApi
       end
     end
     post do
+      Rails.logger.debug params[:visitor]
+
       visitor = RegisterVisitorService.call(params[:visitor])
       booking = MarkBookingAsInPaymentService.call(params[:booking_number])
 

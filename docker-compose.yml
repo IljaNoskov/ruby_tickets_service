@@ -64,6 +64,7 @@ services:
     environment:
       PORT: 3001
       REDIS_URL: redis://redis:6379/0
+      TICKETS_URL: http://tickets:3002/api/tickets/booking
     volumes:
       - ./booking/:/usr/src
     ports:
