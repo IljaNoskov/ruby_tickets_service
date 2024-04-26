@@ -1,0 +1,45 @@
+version: '4'
+services:
+  payment_service:
+    build: .
+    command: "rails server -b 0.0.0.0"
+    volumes:
+      - .:/usr/src
+    ports:
+      - 3003:3003
+    environment:
+      PORT: 3003
+      REDIS_URL: redis://redis:6379/0
+      CREATE_VISITOR_URL: http://visitors-service:3002/visitors
+      FETCH_BOOKING_URL: http://booking-service:3001/bookings
+      BUY_BOOKING_URL: http://booking-service:3001/bookings
+      UPDATE_BOOKING_STATUS_URL: http://booking-service:3001/bookings
+      REQUIRED_AGE: 13
+    depends_on:
+      - db
+
+  # redis:
+  #   image: redis:alpine
+  #   volumes:
+  #     - redis:/data
+  # sidekiq:
+  #   build: .
+  #   command: sidekiq
+  #   volumes:
+  #     - .:/usr/src
+  #   environment:
+  #     REDIS_URL: redis://redis:6379/0
+  #   depends_on:
+  #     - redis
+  db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password 
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres:
+  # rabbit:
+  # redis:
+
