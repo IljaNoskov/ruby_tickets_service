@@ -1,5 +1,16 @@
-version: '3'
+version: '4'
 services:
+  visitors_service:
+    build: visitors_service/
+    command: "rails server -b 0.0.0.0"
+    volumes:
+      - ./visitors_service/:/usr/src
+    ports:
+      - 3000:3000
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - db
   tickets: 
     build: tickets
     command: sh -c "rm -f /usr/src/tickets/tickets/tmp/pids/server.pid && cd tickets && rails server -b 0.0.0.0"
@@ -11,14 +22,29 @@ services:
       - "3002:3002"
     depends_on:
       - tickets_db
-  
-  tickets_db:
+  # redis:
+  #   image: redis:alpine
+  #   volumes:
+  #     - redis:/data
+  # sidekiq:
+  #   build: .
+  #   command: sidekiq
+  #   volumes:
+  #     - .:/usr/src
+  #   environment:
+  #     REDIS_URL: redis://redis:6379/0
+  #   depends_on:
+  #     - redis
+  db:
     image: postgres:11.5
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password 
     volumes:
       - postgres:/var/lib/postgresql/data
-      - .:/src/tickets/
+
 volumes:
-  postgres:
+  db:
+  # rabbit:
+  # redis:
+
