@@ -1,7 +1,7 @@
 require_relative '../sidekiq/booking_control_job.rb'
 require 'securerandom'
 
-class CreateBookingService
+class CreateBookingsService
   def self.call(params)
     client = HTTPClient.new
     uri = ENV['TICKETS_URL']

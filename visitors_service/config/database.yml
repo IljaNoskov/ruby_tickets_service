@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  host: visitors_service_db
+  host: db
   user: user
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %> 

@@ -6,8 +6,8 @@ class ValidateDocumentAdapter
 
   def validate_document(visitor_id, document)
     parametr = {
-        'visitor_id' => visitor_id,
-        'document' => document
+        'id' => visitor_id,
+        'document_number' => document
       }
     response = @client.get(@url,parametr)
 
