@@ -8,7 +8,9 @@ class GrapeApi
 
         namespace :events do
             get do
-                present Event.all
+                response = GetEventsService.find_all
+                status response[:status]
+                present response[:body]
             end
 
             namespace :create do
@@ -22,6 +24,9 @@ class GrapeApi
                 end
                 post do
                     created_event =  CreateEventService.create(params)
+                    response = GetEventsService.find_by_id(created_event)
+                    status response[:status]
+                    present response[:body]
                 end
             end
         end

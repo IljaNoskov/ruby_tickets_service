@@ -8,7 +8,7 @@ class CreateEventService
     # t.float "vip_ticket_price"
 
     def self.create(event_params)
-        Event.create(
+        event = Event.create(
             name: event_params['name'],
             date: event_params['date'],
             ordinary_ticket_count: event_params['ordinary_ticket_count'].to_i,
@@ -16,7 +16,7 @@ class CreateEventService
             ordinary_ticket_price: event_params['ordinary_ticket_price'].to_f,
             vip_ticket_price: event_params['vip_ticket_price'].to_f
         )
-        CreateTicketsService.create(Event.last)
-        Event.last
+        CreateTicketsService.create(event)
+        event
     end
 end
